@@ -28,6 +28,7 @@
                           <span>Profile</span>
                       </a>
                   </li>
+                <?php if($_SESSION['role'] == 1 || $_SESSION['role'] == 3){ ?>
                   <li class="sub-menu">
                       <a href="javascript:;">
                           <i class="fa fa-desktop"></i>
@@ -35,16 +36,15 @@
                       </a>
                       <ul class="sub">
                           <li><a  href="index.php?page=pelanggan">Pelanggan</a></li>
-                <?php if($_SESSION['role'] == 1 || $_SESSION['role'] == 3){ ?>
                     <?php if($_SESSION['role'] == 3){ ?>
                           <li><a  href="index.php?page=users">User</a></li>
                     <?php } ?>
                           <li><a  href="index.php?page=supplier">Supplier</a></li>
                           <li><a  href="index.php?page=barang">Barang</a></li>
                           <li><a  href="index.php?page=kategori">Kategori</a></li>
-                <?php } ?>
                       </ul>
                   </li>
+                <?php } ?>
                 <?php if($_SESSION['role'] == 2 || $_SESSION['role'] == 3){ ?>
                   <li class="sub-menu">
                       <a href="javascript:;" >

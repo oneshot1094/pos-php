@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 20, 2022 at 09:07 AM
+-- Generation Time: Oct 06, 2022 at 08:22 PM
 -- Server version: 10.5.15-MariaDB-0+deb11u1
 -- PHP Version: 7.4.30
 
@@ -48,7 +48,7 @@ CREATE TABLE `barang` (
 
 INSERT INTO `barang` (`id`, `id_barang`, `id_kategori`, `id_supplier`, `nama_barang`, `merk`, `harga_beli`, `harga_jual`, `satuan_barang`, `stok`, `tgl_input`, `tgl_update`) VALUES
 (2, 'BR002', 5, 3, 'Sabun', 'Lifeboy', '1800', '3000', 'PCS', '102', '6 October 2020, 0:41', '6 October 2020, 0:54'),
-(4, 'BR004', 5, 4, 'Shampo', 'Pantene', '350', '500', 'PCS', '100', '19 September 2022, 22:49', '19 September 2022, 23:03');
+(4, 'BR004', 5, 4, 'Shampo', 'Pantene', '350', '500', 'PCS', '63', '19 September 2022, 22:49', '19 September 2022, 23:03');
 
 -- --------------------------------------------------------
 
@@ -92,7 +92,9 @@ CREATE TABLE `login` (
 
 INSERT INTO `login` (`id_login`, `user`, `pass`, `id_member`, `role`) VALUES
 (1, 'admin', '202cb962ac59075b964b07152d234b70', 1, 1),
-(2, 'kasir', '827ccb0eea8a706c4c34a16891f84e7b', 2, 2);
+(2, 'kasir', 'c7911af3adbd12a035b289556d96470a', 2, 2),
+(6, 'pimpinan', '827ccb0eea8a706c4c34a16891f84e7b', 6, 3),
+(7, 'kasirdua', '202cb962ac59075b964b07152d234b70', 7, 2);
 
 -- --------------------------------------------------------
 
@@ -115,8 +117,10 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id_member`, `nm_member`, `alamat_member`, `telepon`, `email`, `gambar`, `NIK`) VALUES
-(1, 'Fauzan Falah', 'uj harapan', '089618173609', 'fauzanfalah21@gmail.com', 'unnamed.jpg', '12314121'),
-(2, 'kasir', 'bekasi', '08123443212', 'kasir@gmail.com', 'unnamed.jpg', '1234554321');
+(1, 'Fauzan Falah', 'uj harapan', '089618173609', 'fauzanfalah21@gmail.com', '1665008121post-it-note-1gr38qq.jpg', '12314121'),
+(2, 'kasir', 'bekasi', '08123443212', 'kasir@gmail.com', '1665062027kasir.jpg', '1234554321'),
+(6, 'Pimpinan', 'pimpinan', '0811111', 'pimpinan@gmail.com', '1665061496gov.jpg', '12345'),
+(7, 'Kasir Dua', 'bekasi', '1234567', 'kasirdua@gmail.com', '1665062088jalan-santai-2.jpg', '54321');
 
 -- --------------------------------------------------------
 
@@ -128,6 +132,7 @@ CREATE TABLE `nota` (
   `id_nota` int(11) NOT NULL,
   `id_barang` varchar(255) NOT NULL,
   `id_member` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
@@ -138,16 +143,43 @@ CREATE TABLE `nota` (
 -- Dumping data for table `nota`
 --
 
-INSERT INTO `nota` (`id_nota`, `id_barang`, `id_member`, `jumlah`, `total`, `tanggal_input`, `periode`) VALUES
-(1, 'BR001', 1, '4', '12000', '6 October 2020, 0:45', '10-2020'),
-(2, 'BR001', 1, '4', '12000', '6 October 2020, 0:45', '10-2020'),
-(3, 'BR001', 1, '4', '12000', '6 October 2020, 0:45', '10-2020'),
-(4, 'BR001', 1, '4', '12000', '6 October 2020, 0:45', '10-2020'),
-(5, 'BR001', 1, '2', '6000', '6 October 2020, 0:49', '10-2020'),
-(6, 'BR001', 1, '2', '6000', '6 October 2020, 0:49', '10-2020'),
-(7, 'BR001', 1, '2', '6000', '6 October 2020, 1:15', '10-2020'),
-(8, 'BR002', 1, '2', '6000', '6 October 2020, 1:17', '10-2020'),
-(9, 'BR001', 1, '2', '6000', '6 October 2020, 1:20', '10-2020');
+INSERT INTO `nota` (`id_nota`, `id_barang`, `id_member`, `id_pelanggan`, `jumlah`, `total`, `tanggal_input`, `periode`) VALUES
+(1, 'BR001', 1, 0, '4', '12000', '6 October 2020, 0:45', '10-2020'),
+(2, 'BR001', 1, 0, '4', '12000', '6 October 2020, 0:45', '10-2020'),
+(3, 'BR001', 1, 0, '4', '12000', '6 October 2020, 0:45', '10-2020'),
+(4, 'BR001', 1, 0, '4', '12000', '6 October 2020, 0:45', '10-2020'),
+(5, 'BR001', 1, 0, '2', '6000', '6 October 2020, 0:49', '10-2020'),
+(6, 'BR001', 1, 0, '2', '6000', '6 October 2020, 0:49', '10-2020'),
+(7, 'BR001', 1, 0, '2', '6000', '6 October 2020, 1:15', '10-2020'),
+(8, 'BR002', 1, 0, '2', '6000', '6 October 2020, 1:17', '10-2020'),
+(9, 'BR001', 1, 0, '2', '6000', '6 October 2020, 1:20', '10-2020'),
+(10, 'BR004', 2, 3, '9', '4500', '6 October 2022, 5:32', '10-2022'),
+(11, 'BR004', 2, 3, '9', '4500', '6 October 2022, 5:32', '10-2022'),
+(12, 'BR004', 2, 3, '9', '4500', '6 October 2022, 5:32', '10-2022'),
+(13, 'BR004', 2, 3, '1', '500', '6 October 2022, 6:16', '10-2022');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pelanggan`
+--
+
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
+  `nama_pelanggan` varchar(255) NOT NULL,
+  `tgl_input` varchar(255) NOT NULL,
+  `alamat_pelanggan` varchar(255) NOT NULL,
+  `telepon` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `tgl_input`, `alamat_pelanggan`, `telepon`) VALUES
+(2, 'Sasa', '6 October 2022, 5:14', 'Bekasi', '08767889782'),
+(3, 'Sinta', '6 October 2022, 5:53', 'Bekasi', '08989876745'),
+(4, 'Budi', '6 October 2022, 20:07', 'Jakarta', '0812345');
 
 -- --------------------------------------------------------
 
@@ -159,6 +191,7 @@ CREATE TABLE `penjualan` (
   `id_penjualan` int(11) NOT NULL,
   `id_barang` varchar(255) NOT NULL,
   `id_member` int(11) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL
@@ -168,8 +201,8 @@ CREATE TABLE `penjualan` (
 -- Dumping data for table `penjualan`
 --
 
-INSERT INTO `penjualan` (`id_penjualan`, `id_barang`, `id_member`, `jumlah`, `total`, `tanggal_input`) VALUES
-(23, 'BR001', 1, '2', '6000', '6 October 2020, 1:51');
+INSERT INTO `penjualan` (`id_penjualan`, `id_barang`, `id_member`, `id_pelanggan`, `jumlah`, `total`, `tanggal_input`) VALUES
+(25, 'BR004', 2, 3, '1', '500', '6 October 2022, 6:16');
 
 -- --------------------------------------------------------
 
@@ -252,6 +285,12 @@ ALTER TABLE `nota`
   ADD PRIMARY KEY (`id_nota`);
 
 --
+-- Indexes for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
+
+--
 -- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
@@ -289,25 +328,31 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `penjualan`
 --
 ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `supplier`
